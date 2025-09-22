@@ -1,11 +1,19 @@
 #BlueJ class context
 comment0.target=Store
-comment1.params=location\ tenges
+comment1.params=location\ coins
 comment1.target=Store(int,\ int)
 comment2.params=
-comment2.target=int\ getPosition()
+comment2.target=int\ getLocation()
 comment3.params=
-comment3.target=int\ getTenges()
+comment3.target=int\ getCoins()
 comment4.params=
-comment4.target=void\ resupply()
-numComments=5
+comment4.target=javax.swing.JLabel\ getLabel()
+comment5.params=
+comment5.target=int\ getEmptiedCount()
+comment6.params=
+comment6.target=boolean\ isEmpty()
+comment7.params=
+comment7.target=int\ takeCoins()
+comment8.params=
+comment8.target=void\ updateLabel()
+numComments=9

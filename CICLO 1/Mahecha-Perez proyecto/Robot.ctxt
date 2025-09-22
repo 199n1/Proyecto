@@ -1,11 +1,19 @@
 #BlueJ class context
 comment0.target=Robot
-comment1.params=location
+comment1.params=startLocation
 comment1.target=Robot(int)
 comment2.params=
-comment2.target=int\ getPosition()
-comment3.params=meters
-comment3.target=void\ move(int)
+comment2.target=int\ getLocation()
+comment3.params=
+comment3.target=int\ getTotalProfit()
 comment4.params=
-comment4.target=void\ returnToStart()
-numComments=5
+comment4.target=javax.swing.JLabel\ getLabel()
+comment5.params=
+comment5.target=java.util.List\ getMoveProfits()
+comment6.params=index
+comment6.target=int\ profitPerMove(int)
+comment7.params=store
+comment7.target=int\ moveTo(Store)
+comment8.params=
+comment8.target=void\ updateLabel()
+numComments=9

@@ -1,0 +1,25 @@
+link de archivos en GitHub: https://github.com/199n1/Proyecto
+1. ¿Cuáles fueron los mini-ciclos definidos? Justifíquenlos.
+- Miniciclo 1:
+Hacemos las clases Robot, Store y SilkRoad. Que se vean en la pantalla, cada uno con su color, y que no se monten en la misma casilla. La idea es tener lo básico visible y que se entienda qué es qué.
+
+- Miniciclo 2:
+Ahora les damos acción: que los robots se muevan (move, returnToStart), que las tiendas se recarguen cuando toque y que todo pueda volver al inicio con un reinicio. Además, armamos una ruta en espiral para que el robot recorra el mapa de forma ordenada.
+2. ¿Cuál es el estado actual del proyecto en términos de mini-ciclos? ¿por qué?
+   - El código esta completo, pero en el astah no esta terminado el diagrama de secuencia
+3. ¿Cuál fue el tiempo total invertido por cada uno de ustedes? (Horas/Hombre)
+   - Maria jose: 10 horas
+   - Natalia : 10 horas
+4. ¿Cuál consideran fue el mayor logro? ¿Por qué?
+   - El mayor logro que tuvimos fue entendimos mejor como funcionan la clases y logramos renovar la licencia del astah.
+5. ¿Cuál consideran que fue el mayor problema técnico? ¿Qué hicieron para resolverlo?
+   - El mayor problema técnico que tuvimos fue que se nos venció la licencia del astah y que no somos expertas usando GIHUB, para resolver los problemas buscamos ayuda de amigos.
+6. ¿Qué hicieron bien como equipo? ¿Qué se comprometen a hacer para mejorar los resultados?
+   - tuvimos buena comunicación y nos ayudamos mutuamente, para mejorar los resultados podríamos dedicarle mas tiempo.
+7. Considerando las prácticas XP incluidas en los laboratorios. ¿cuál fue la más útil? ¿por qué?
+   - pair programing porque juntas trabajamos el mismo codigo
+8. ¿Qué referencias usaron? ¿Cuál fue la más útil? Incluyan citas con estándares adecuados.
+
+ICPCNews. (2024, 24 septiembre). ICPC WF Astana Solution Video: Problem J - The Silk Road . . . with Robots! [Vídeo]. YouTube. https://www.youtube.com/watch?v=mcwVytY5ooU
+
+OpenAI. (2025). ChatGPT (septiembre 7, versión GPT-5) [Modelo de lenguaje de IA]. https://chat.openai.com/

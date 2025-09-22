@@ -1,84 +1,92 @@
 import java.awt.*;
+import java.awt.geom.*;
 
 /**
- * A rectangle that can be manipulated and that draws itself on a canvas.
+ * A circle that can be manipulated and that draws itself on a canvas.
  * 
- * @author  Michael Kolling and David J. Barnes (Modified)
- * @version 1.0  (15 July 2000)()
+ * @author  Michael Kolling and David J. Barnes
+ * @version 1.0.  (15 July 2000) 
  */
 
+public class Circle{
 
- 
-public class Rectangle{
-
-    public static int EDGES = 4;
+    public static final double PI=3.1416;
     
-    private int height;
-    private int width;
+    private int diameter;
     private int xPosition;
     private int yPosition;
     private String color;
     private boolean isVisible;
-
-    /**
-     * Create a new rectangle at default position with default color.
-     */
-    public Rectangle(){
-        height = 30;
-        width = 40;
-        xPosition = 70;
-        yPosition = 15;
-        color = "magenta";
-        isVisible = false;
-    }
     
 
-    /**
-     * Make this rectangle visible. If it was already visible, do nothing.
-     */
+    public Circle(){
+        diameter = 30;
+        xPosition = 20;
+        yPosition = 15;
+        color = "blue";
+        isVisible = false;
+    }
+
+
+       
     public void makeVisible(){
         isVisible = true;
         draw();
     }
     
-    /**
-     * Make this rectangle invisible. If it was already invisible, do nothing.
-     */
+
     public void makeInvisible(){
         erase();
         isVisible = false;
     }
+
+    private void draw(){
+        if(isVisible) {
+            Canvas canvas = Canvas.getCanvas();
+            canvas.draw(this, color, 
+                new Ellipse2D.Double(xPosition, yPosition, 
+                diameter, diameter));
+            canvas.wait(10);
+        }
+    }
+
+    private void erase(){
+        if(isVisible) {
+            Canvas canvas = Canvas.getCanvas();
+            canvas.erase(this);
+        }
+    }
     
     /**
-     * Move the rectangle a few pixels to the right.
+     * Move the circle a few pixels to the right.
      */
     public void moveRight(){
         moveHorizontal(20);
     }
 
     /**
-     * Move the rectangle a few pixels to the left.
+     * Move the circle a few pixels to the left.
      */
     public void moveLeft(){
         moveHorizontal(-20);
     }
 
     /**
-     * Move the rectangle a few pixels up.
+     * Move the circle a few pixels up.
      */
     public void moveUp(){
         moveVertical(-20);
     }
 
     /**
-     * Move the rectangle a few pixels down.
+     * Move the circle a few pixels down.
      */
     public void moveDown(){
         moveVertical(20);
     }
 
     /**
-     * Move the rectangle horizontally.
+     * Move the circle horizontally.
      * @param distance the desired distance in pixels
      */
     public void moveHorizontal(int distance){
@@ -88,7 +96,7 @@ public class Rectangle{
     }
 
     /**
-     * Move the rectangle vertically.
+     * Move the circle vertically.
      * @param distance the desired distance in pixels
      */
     public void moveVertical(int distance){
@@ -98,7 +106,7 @@ public class Rectangle{
     }
 
     /**
-     * Slowly move the rectangle horizontally.
+     * Slowly move the circle horizontally.
      * @param distance the desired distance in pixels
      */
     public void slowMoveHorizontal(int distance){
@@ -118,7 +126,7 @@ public class Rectangle{
     }
 
     /**
-     * Slowly move the rectangle vertically.
+     * Slowly move the circle vertically
      * @param distance the desired distance in pixels
      */
     public void slowMoveVertical(int distance){
@@ -127,7 +135,7 @@ public class Rectangle{
         if(distance < 0) {
             delta = -1;
             distance = -distance;
-        } else {
+        }else {
             delta = 1;
         }
 
@@ -138,17 +146,15 @@ public class Rectangle{
     }
 
     /**
-     * Change the size to the new size
-     * @param newHeight the new height in pixels. newHeight must be >=0.
-     * @param newWidht the new width in pixels. newWidth must be >=0.
+     * Change the size.
+     * @param newDiameter the new size (in pixels). Size must be >=0.
      */
-    public void changeSize(int newHeight, int newWidth) {
+    public void changeSize(int newDiameter){
         erase();
-        height = newHeight;
-        width = newWidth;
+        diameter = newDiameter;
         draw();
     }
-    
+
     /**
      * Change the color. 
      * @param color the new color. Valid colors are "red", "yellow", "blue", "green",
@@ -159,30 +165,6 @@ public class Rectangle{
         draw();
     }
 
-    /*
-     * Draw the rectangle with current specifications on screen.
-     */
 
-    private void draw() {
-        if(isVisible) {
-            Canvas canvas = Canvas.getCanvas();
-            canvas.draw(this, color,
-                new java.awt.Rectangle(xPosition, yPosition, 
-                                       width, height));
-            canvas.wait(10);
-        }
-    }
 
-    /*
-     * Erase the rectangle on screen.
-     */
-    private void erase(){
-        if(isVisible) {
-            Canvas canvas = Canvas.getCanvas();
-            canvas.erase(this);
-        }
-    }
 }
-
-
-

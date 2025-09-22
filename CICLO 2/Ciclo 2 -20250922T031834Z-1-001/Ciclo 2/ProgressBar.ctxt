@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=ProgressBar
+comment0.text=\r\n\ Clase\ ProgressBar\:\ representa\ una\ barra\ de\ progreso\ para\ mostrar\ las\ ganancias\ de\ la\ simulaci\u00F3n.\r\n\ Est\u00E1\ compuesta\ por\ dos\ rect\u00E1ngulos\:\ el\ fondo\ y\ la\ barra\ que\ crece\ proporcionalmente\ al\ valor\ actual.\r\n\r\n\ @param\ x\ coordenada\ X\ de\ la\ barra\ en\ el\ lienzo.\r\n\ @param\ y\ coordenada\ Y\ de\ la\ barra\ en\ el\ lienzo.\r\n\ @param\ width\ ancho\ total\ de\ la\ barra.\r\n\ @param\ height\ alto\ total\ de\ la\ barra.\r\n
+comment1.params=x\ y\ width\ height
+comment1.target=ProgressBar(int,\ int,\ int,\ int)
+comment1.text=\r\n\ Constructor\ de\ la\ barra\ de\ progreso.\r\n
+comment2.params=max
+comment2.target=void\ setMax(int)
+comment2.text=\r\n\ Establece\ el\ valor\ m\u00E1ximo\ de\ la\ barra.\r\n\ @param\ max\ valor\ m\u00E1ximo\ permitido.\r\n
+comment3.params=val
+comment3.target=void\ setValue(int)
+comment3.text=\r\n\ Establece\ el\ valor\ actual\ de\ la\ barra\ y\ actualiza\ la\ visualizaci\u00F3n.\r\n\ @param\ val\ valor\ actual.\r\n
+comment4.params=
+comment4.target=void\ makeVisible()
+comment4.text=\r\n\ Hace\ visible\ la\ barra\ de\ progreso\ en\ el\ lienzo.\r\n
+comment5.params=
+comment5.target=void\ makeInvisible()
+comment5.text=\r\n\ Hace\ invisible\ la\ barra\ de\ progreso\ en\ el\ lienzo.\r\n
+comment6.params=
+comment6.target=void\ updateVisual()
+comment6.text=\r\n\ Actualiza\ visualmente\ la\ barra\ de\ progreso\ de\ acuerdo\ al\ valor\ actual.\r\n
+numComments=7

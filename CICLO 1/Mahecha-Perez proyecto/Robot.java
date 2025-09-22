@@ -1,28 +1,68 @@
-public class Robot extends Circle {
-    private int position;
-    private int initialPosition;
- 
-    public Robot(int location) {
-        super(); // Circle
-        this.position = location;
-        this.initialPosition = location;
-        changeColor("blue"); // color por defecto
-        moveHorizontal(location); 
-        moveVertical(200); // línea base Y=200
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Robot {
+    private int location;
+    private int totalProfit;
+    private JLabel label;
+    private List<Integer> moveProfits; // ganancias por cada movimiento
+
+    public Robot(int startLocation) {
+        this.location = startLocation;
+        this.totalProfit = 0;
+        this.moveProfits = new ArrayList<>();
+
+        label = new JLabel("🤖");
+        label.setOpaque(true);
+        label.setBackground(Color.CYAN);
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        updateLabel();
     }
- 
-    public int getPosition() {
-        return position;
+
+    public int getLocation() {
+        return location;
     }
- 
-    public void move(int meters) {
-        moveHorizontal(meters);
-        position += meters;
+
+    public int getTotalProfit() {
+        return totalProfit;
     }
- 
-    public void returnToStart() {
-        int distance = initialPosition - position;
-        moveHorizontal(distance);
-        position = initialPosition;
+
+    public JLabel getLabel() {
+        return label;
+    }
+
+    public List<Integer> getMoveProfits() {
+        return moveProfits;
+    }
+
+    public int profitPerMove(int index) {
+        if (index < 0 || index >= moveProfits.size()) return 0;
+        return moveProfits.get(index);
+    }
+
+    public int moveTo(Store store) {
+        int distance = Math.abs(store.getLocation() - location);
+        int coinsTaken = store.takeCoins();
+        int profit = coinsTaken - distance;
+
+        totalProfit += profit;
+        moveProfits.add(profit);
+
+        location = store.getLocation();
+        updateLabel();
+        return profit;
+    }
+
+    private void updateLabel() {
+        label.setText("🤖 " + totalProfit);
+        if (totalProfit > 0) {
+            label.setBackground(Color.GREEN);
+        } else if (totalProfit < 0) {
+            label.setBackground(Color.RED);
+        } else {
+            label.setBackground(Color.CYAN);
+        }
     }
 }

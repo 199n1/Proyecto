@@ -1,139 +1,126 @@
-import java.util.ArrayList;
- 
-public class SilkRoad {
-    private int length;
-    private ArrayList<Robot> robots;
-    private ArrayList<Store> stores;
-    private boolean isVisible;
-    private int profit;
- 
+import javax.swing.*;
+import java.awt.*;
+import java.util.*;
+import java.util.List;
+
+public class SilkRoad extends JFrame {
+    private Store[] stores;
+    private List<Robot> robots;
+    private JProgressBar progressBar;
+    private int totalProfit;
+    private int pixelScale;
+
+    // Constructor 1: básico
     public SilkRoad(int length) {
-        this.length = length;
+        this(length, 40); // por defecto 40px por celda
+    }
+
+    // Constructor 2: con escala personalizada
+    public SilkRoad(int length, int pixelScale) {
+        this.pixelScale = pixelScale;
+        this.stores = new Store[length];
         this.robots = new ArrayList<>();
-        this.stores = new ArrayList<>();
-        this.isVisible = true;
-        this.profit = 0;
-    }
- 
-    // 🔹 Verificar si ya existe algo en esa posición
-    private boolean occupied(int location) {
-        for (Robot r : robots) {
-            if (r.getPosition() == location) return true;
+        this.totalProfit = 0;
+
+        Random rand = new Random();
+        for (int i = 0; i < length; i++) {
+            int coins = rand.nextInt(20) + 1;
+            stores[i] = new Store(i, coins);
         }
-        for (Store s : stores) {
-            if (s.getPosition() == location) return true;
-        }
-        return false;
+
+        setupUI(length);
     }
- 
-    public void placeRobot(int location) {
-        if (occupied(location)) {
-            if (isVisible) {
-                System.out.println("⚠️ No se puede colocar un robot en " + location + ", ya está ocupado.");
+
+    private void setupUI(int length) {
+        setTitle("Silk Road Simulation");
+        setLayout(new BorderLayout());
+
+        JPanel grid = new JPanel(new GridLayout(2, length));
+        for (Store store : stores) {
+            grid.add(store.getLabel());
+        }
+        for (int i = 0; i < length; i++) {
+            JLabel placeholder = new JLabel("");
+            placeholder.setOpaque(true);
+            placeholder.setBackground(Color.WHITE);
+            grid.add(placeholder);
+        }
+
+        progressBar = new JProgressBar(0, 1000);
+        progressBar.setStringPainted(true);
+
+        add(grid, BorderLayout.CENTER);
+        add(progressBar, BorderLayout.SOUTH);
+
+        setSize(length * pixelScale, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+    }
+
+    public void addRobot(int startLocation) {
+        Robot robot = new Robot(startLocation);
+        robots.add(robot);
+    }
+
+    public int moveRobot(int robotIndex, int storeIndex) {
+        if (robotIndex < 0 || robotIndex >= robots.size()) return 0;
+        if (storeIndex < 0 || storeIndex >= stores.length) return 0;
+
+        Robot robot = robots.get(robotIndex);
+        Store store = stores[storeIndex];
+
+        int profit = robot.moveTo(store);
+        totalProfit += profit;
+        progressBar.setValue(totalProfit);
+
+        return profit;
+    }
+
+    // movimiento automático para maximizar ganancia
+    public void autoMoveRobots() {
+        for (Robot robot : robots) {
+            int bestProfit = Integer.MIN_VALUE;
+            Store bestStore = null;
+
+            for (Store store : stores) {
+                if (!store.isEmpty()) {
+                    int distance = Math.abs(store.getLocation() - robot.getLocation());
+                    int potentialProfit = store.getCoins() - distance;
+                    if (potentialProfit > bestProfit) {
+                        bestProfit = potentialProfit;
+                        bestStore = store;
+                    }
+                }
             }
-            return;
-        }
-        Robot r = new Robot(location);
-        robots.add(r);
-        if (isVisible) r.makeVisible();
-        System.out.println("Robot agregado en " + location);
-    }
- 
-    public void removeRobot(int location) {
-        Robot toRemove = null;
-        for (Robot r : robots) {
-            if (r.getPosition() == location) {
-                toRemove = r;
-                break;
-            }
-        }
-        if (toRemove != null) {
-            toRemove.makeInvisible();
-            robots.remove(toRemove);
-            System.out.println("Robot eliminado en " + location);
-        }
-    }
- 
-    public void placeStore(int location, int tenges) {
-        if (occupied(location)) {
-            if (isVisible) {
-                System.out.println("⚠️ No se puede colocar una tienda en " + location + ", ya está ocupado.");
-            }
-            return;
-        }
-        Store s = new Store(location, tenges);
-        stores.add(s);
-        if (isVisible) s.makeVisible();
-        System.out.println("Tienda agregada en " + location + " con " + tenges + " tenges.");
-    }
- 
-    public void removeStore(int location) {
-        Store toRemove = null;
-        for (Store s : stores) {
-            if (s.getPosition() == location) {
-                toRemove = s;
-                break;
-            }
-        }
-        if (toRemove != null) {
-            toRemove.makeInvisible();
-            stores.remove(toRemove);
-            System.out.println("Tienda eliminada en " + location);
-        }
-    }
- 
-    public void moveRobot(int location, int meters) {
-        for (Robot r : robots) {
-            if (r.getPosition() == location) {
-                r.move(meters);
-                System.out.println("Robot en " + location + " se movió " + meters + " metros.");
-                return;
+            if (bestStore != null) {
+                int profit = robot.moveTo(bestStore);
+                totalProfit += profit;
+                progressBar.setValue(totalProfit);
             }
         }
-        if (isVisible) {
-            System.out.println("⚠️ No existe robot en la posición " + location);
-        }
     }
- 
-    public void resupplyStores() {
-        for (Store s : stores) {
-            s.resupply();
-        }
-        System.out.println("Todas las tiendas han sido reabastecidas.");
+
+    // consultar veces que una tienda fue desocupada
+    public int timesEmptied(int location) {
+        if (location < 0 || location >= stores.length) return 0;
+        return stores[location].getEmptiedCount();
     }
- 
-    public void returnRobots() {
-        for (Robot r : robots) {
-            r.returnToStart();
-        }
-        System.out.println("Todos los robots han vuelto a su posición inicial.");
+
+    // consultar ganancias por movimiento de un robot
+    public List<Integer> robotProfits(int robotIndex) {
+        if (robotIndex < 0 || robotIndex >= robots.size()) return Collections.emptyList();
+        return robots.get(robotIndex).getMoveProfits();
     }
- 
-    public void reboot() {
-        resupplyStores();
-        returnRobots();
-        System.out.println("Ruta de seda reiniciada.");
+
+    public int getTotalProfit() {
+        return totalProfit;
     }
- 
-    public int getProfit() {
-        return profit; // por ahora fijo en 0
+
+    public int getNumberOfStores() {
+        return stores.length;
     }
- 
-    public void makeVisible() {
-        isVisible = true;
-        for (Robot r : robots) r.makeVisible();
-        for (Store s : stores) s.makeVisible();
-    }
- 
-    public void makeInvisible() {
-        isVisible = false;
-        for (Robot r : robots) r.makeInvisible();
-        for (Store s : stores) s.makeInvisible();
-    }
- 
-    public void finish() {
-        robots.clear();
-        stores.clear();
-        System.out.println("Simulador terminado.");
+
+    public int getNumberOfRobots() {
+        return robots.size();
     }
 }

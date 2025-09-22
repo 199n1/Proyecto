@@ -184,5 +184,3 @@ public class Rectangle{
     }
 }
 
-
-
