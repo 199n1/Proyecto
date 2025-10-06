@@ -8,8 +8,8 @@ Ahora les damos acción: que los robots se muevan (move, returnToStart), que las
 2. ¿Cuál es el estado actual del proyecto en términos de mini-ciclos? ¿por qué?
    - El código esta completo, pero en el astah no esta terminado el diagrama de secuencia
 3. ¿Cuál fue el tiempo total invertido por cada uno de ustedes? (Horas/Hombre)
-   - Maria jose: 10 horas
-   - Natalia : 10 horas
+   - Maria jose: 15 horas
+   - Natalia : 15 horas
 4. ¿Cuál consideran fue el mayor logro? ¿Por qué?
    - El mayor logro que tuvimos fue entendimos mejor como funcionan la clases y logramos renovar la licencia del astah.
 5. ¿Cuál consideran que fue el mayor problema técnico? ¿Qué hicieron para resolverlo?
