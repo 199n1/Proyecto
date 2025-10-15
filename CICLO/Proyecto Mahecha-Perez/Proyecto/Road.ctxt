@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=Road
+comment0.text=\r\n\ Clase\ visualizadora\ que\ dibuja\ una\ cuadr\u00EDcula\ con\ un\ recorrido\ en\ espiral\r\n\ comenzando\ desde\ la\ esquina\ inferior\ izquierda.\ Las\ celdas\ v\u00E1lidas\ se\ muestran\ en\ gris\r\n\ y\ las\ inv\u00E1lidas\ en\ negro.\r\n\ \r\n\ @author\ Natalia\ Mahecha\ y\ Maria\ Jose\ Perez\r\n\ @version\ 1.0\ (Oct\ 2025)\r\n
+comment1.params=length
+comment1.target=Road(int)
+comment1.text=\r\n\ Crea\ una\ nueva\ cuadr\u00EDcula\ visual\ con\ un\ recorrido\ en\ espiral.\r\n\ \r\n\ @param\ length\ n\u00FAmero\ de\ celdas\ v\u00E1lidas\ en\ el\ camino\r\n
+comment2.params=
+comment2.target=void\ generateGrid()
+comment2.text=\r\n\ Genera\ la\ cuadr\u00EDcula\ visual\ y\ asigna\ colores\ seg\u00FAn\ validez\ de\ cada\ celda.\r\n\ Las\ celdas\ v\u00E1lidas\ son\ grises;\ las\ inv\u00E1lidas\ son\ negras.\r\n
+comment3.params=gridSize
+comment3.target=generateSpiralFromBottomLeft(int)
+comment3.text=\r\n\ Genera\ una\ lista\ de\ coordenadas\ en\ espiral\ comenzando\ desde\ la\ esquina\ inferior\ izquierda.\r\n\ \r\n\ @param\ gridSize\ tama\u00F1o\ de\ la\ cuadr\u00EDcula\ (n\u00FAmero\ de\ filas/columnas)\r\n\ @return\ lista\ de\ coordenadas\ [fila,\ columna]\ en\ orden\ espiral\r\n
+comment4.params=logicalIndex
+comment4.target=int[]\ getVisualPosition(int)
+comment4.text=\r\n\ Devuelve\ la\ posici\u00F3n\ visual\ (x,\ y)\ de\ una\ celda\ l\u00F3gica\ espec\u00EDfica.\r\n\ \r\n\ @param\ logicalIndex\ \u00EDndice\ l\u00F3gico\ de\ la\ celda\r\n\ @return\ arreglo\ con\ coordenadas\ [x,\ y]\ en\ p\u00EDxeles\r\n
+comment5.params=
+comment5.target=int\ getTotalWidth()
+comment5.text=\r\n\ Devuelve\ el\ ancho\ total\ de\ la\ cuadr\u00EDcula\ en\ p\u00EDxeles.\r\n\ \r\n\ @return\ ancho\ total\ en\ p\u00EDxeles\r\n
+comment6.params=
+comment6.target=void\ makeInvisible()
+comment6.text=\r\n\ Oculta\ toda\ la\ cuadr\u00EDcula\ de\ la\ pantalla.\r\n
+comment7.params=
+comment7.target=void\ makeVisible()
+comment7.text=\r\n\ Hace\ visible\ toda\ la\ cuadr\u00EDcula\ en\ pantalla.\r\n
+numComments=8
